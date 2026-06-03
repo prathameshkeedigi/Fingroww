@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Me — Prathamesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary:#4f46e5; --primary-light:#6366f1; --primary-pale:#eef2ff;
+  --text-dark:#1e1b4b; --text-mid:#374151; --text-light:#9ca3af;
+  --bg-white:#fff; --bg-soft:#eef2ff; --border:#c7d2fe;
+  --shadow:0 4px 24px rgba(79,70,229,0.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:#f8f9ff;color:var(--text-dark);padding:112px 8% 72px;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #c7d2fe;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:56px;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#4f46e5;text-decoration:none;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.85rem;font-weight:500;color:#374151;padding:8px 14px;border-radius:7px;transition:.18s;}
+.nav-links a:hover,.nav-links a.active{background:#eef2ff;color:#4f46e5;}
+
+.page-label{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--primary);margin-bottom:.6rem;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:.75rem;}
+.divider{width:56px;height:4px;background:var(--primary);border-radius:2px;margin-bottom:2.5rem;}
+
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:3.5rem;align-items:start;}
+@media(max-width:768px){.grid{grid-template-columns:1fr;}}
+
+.bio p{font-size:.975rem;color:var(--text-mid);line-height:1.82;margin-bottom:1.25rem;}
+.info-table{width:100%;border-collapse:collapse;margin-top:.5rem;}
+.info-table tr{border-bottom:1px solid var(--border);}
+.info-table tr:last-child{border:none;}
+.info-table td{padding:.65rem 0;font-size:.9rem;color:var(--text-mid);vertical-align:top;}
+.info-table td:first-child{font-weight:600;color:var(--text-dark);min-width:110px;}
+
+.card{background:var(--bg-soft);border:1px solid var(--border);border-radius:16px;padding:1.75rem;margin-bottom:1.25rem;}
+.card h3{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text-dark);margin-bottom:1.1rem;}
+.tags{display:flex;flex-wrap:wrap;gap:.5rem;}
+.tag{background:#fff;border:1px solid var(--border);color:var(--primary);padding:5px 13px;border-radius:100px;font-size:.8rem;font-weight:500;}
+
+.team{display:flex;flex-direction:column;gap:.6rem;margin-top:.25rem;}
+.tmember{display:flex;align-items:center;gap:.85rem;padding:.6rem .75rem;background:#fff;border:1px solid var(--border);border-radius:10px;}
+.avatar{width:38px;height:38px;border-radius:50%;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:center;font-size:.8rem;font-weight:700;flex-shrink:0;}
+.avatar.me{background:#f59e0b;}
+.tm-name{font-weight:600;font-size:.875rem;color:var(--text-dark);}
+.tm-id{font-size:.76rem;color:var(--text-light);}
+.you-badge{margin-left:auto;background:var(--primary-pale);color:var(--primary);font-size:.7rem;font-weight:700;padding:2px 9px;border-radius:100px;white-space:nowrap;}
+
+.interests{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.25rem;}
+.interest-item{background:#fff;border:1px solid var(--border);border-radius:10px;padding:.75rem 1rem;display:flex;align-items:center;gap:.6rem;}
+.int-icon{font-size:1.3rem;}
+.int-label{font-size:.85rem;font-weight:600;color:var(--text-dark);}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="1_home.html" class="nav-brand">Prathamesh · Fingroww</a>
+  <ul class="nav-links">
+    <li><a href="1_home.html">Home</a></li>
+    <li><a href="2_about.html" class="active">About</a></li>
+    <li><a href="3_learnings.html">Learnings</a></li>
+    <li><a href="4_project.html">Project</a></li>
+    <li><a href="5_certificates.html">Certificates</a></li>
+    <li><a href="6_contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-label">Who I Am</div>
+<h1>About Me</h1>
+<div class="divider"></div>
+
+<div class="grid">
+
+  <!-- LEFT -->
+  <div>
+    <div class="bio">
+      <p>I'm <strong>Prathamesh</strong>, a B.Tech Computer Science &amp; Engineering (AI) student at KLE Technological University, Hubballi. I'm passionate about building full-stack applications that solve real financial and productivity problems for everyday users.</p>
+      <p>I designed and developed <em>Fingroww</em> — a comprehensive personal finance dashboard for Indian professionals. The project gave me deep hands-on experience with Next.js 14 App Router, Supabase (PostgreSQL with Row Level Security), AI integration via Groq + Llama 3.3-70B, financial calculator design, and writing 647 automated tests across 28 test suites.</p>
+      <p>Beyond coding, I'm interested in system design, AI applications, and building developer tools. I believe clean architecture matters more than clever code.</p>
+    </div>
+
+    <table class="info-table">
+      <tr><td>Name</td><td>Prathamesh</td></tr>
+      <tr><td>USN</td><td>[Your USN]</td></tr>
+      <tr><td>Degree</td><td>B.Tech CSE (AI)</td></tr>
+      <tr><td>University</td><td>KLE Technological University, Hubballi</td></tr>
+      <tr><td>Department</td><td>Computer Science &amp; Engineering (AI)</td></tr>
+      <tr><td>Guide</td><td>Asst. Prof. Amit V Kachavimath</td></tr>
+      <tr><td>Email</td><td>prathameshke@gmail.com</td></tr>
+    </table>
+
+    <div style="margin-top:2rem;">
+      <div class="card" style="background:#fff;">
+        <h3>🎯 Areas of Interest</h3>
+        <div class="interests">
+          <div class="interest-item"><div class="int-icon">🌐</div><div class="int-label">Full Stack Dev</div></div>
+          <div class="interest-item"><div class="int-icon">🤖</div><div class="int-label">AI Integration</div></div>
+          <div class="interest-item"><div class="int-icon">🏗️</div><div class="int-label">System Design</div></div>
+          <div class="interest-item"><div class="int-icon">💰</div><div class="int-label">FinTech Apps</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div>
+    <div class="card">
+      <h3>🛠 Technical Skills</h3>
+      <div class="tags">
+        <span class="tag">Next.js 14</span>
+        <span class="tag">React 18</span>
+        <span class="tag">JavaScript (ES2024)</span>
+        <span class="tag">Supabase</span>
+        <span class="tag">PostgreSQL</span>
+        <span class="tag">Row Level Security</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">Recharts</span>
+        <span class="tag">Groq SDK</span>
+        <span class="tag">Llama 3.3-70B</span>
+        <span class="tag">Server Actions</span>
+        <span class="tag">Jest</span>
+        <span class="tag">Playwright</span>
+        <span class="tag">Git &amp; GitHub</span>
+        <span class="tag">REST APIs</span>
+        <span class="tag">Vercel</span>
+      </div>
+    </div>
+
+    <div class="card">
+      <h3>👥 Project Team — Fingroww</h3>
+      <div class="team">
+        <div class="tmember">
+          <div class="avatar me">P</div>
+          <div><div class="tm-name">Prathamesh</div><div class="tm-id">[Your USN]</div></div>
+          <span class="you-badge">You</span>
+        </div>
+        <div class="tmember">
+          <div class="avatar">T2</div>
+          <div><div class="tm-name">[Teammate 2]</div><div class="tm-id">[USN]</div></div>
+        </div>
+        <div class="tmember">
+          <div class="avatar">T3</div>
+          <div><div class="tm-name">[Teammate 3]</div><div class="tm-id">[USN]</div></div>
+        </div>
+        <div class="tmember">
+          <div class="avatar">T4</div>
+          <div><div class="tm-name">[Teammate 4]</div><div class="tm-id">[USN]</div></div>
+        </div>
+        <div class="tmember">
+          <div class="avatar">T5</div>
+          <div><div class="tm-name">[Teammate 5]</div><div class="tm-id">[USN]</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="968" viewBox="0 0 1200 968" style="font-family: Arial, Helvetica, sans-serif;">
+  <defs>
+    <marker id="arrInc" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polyline points="1,1 10,4 1,7" fill="none" stroke="#4f46e5" stroke-width="1.5"/>
+    </marker>
+    <marker id="arrGold" markerWidth="11" markerHeight="8" refX="10" refY="4" orient="auto">
+      <polyline points="1,1 10,4 1,7" fill="none" stroke="#b45309" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="968" fill="#f8f9ff"/>
+
+  <!-- ══════════════════ SYSTEM BOUNDARY ══════════════════ -->
+  <rect x="128" y="48" width="884" height="864" rx="10" fill="#eef2ff" stroke="#4f46e5" stroke-width="2.5"/>
+  <text x="570" y="80" text-anchor="middle" font-size="15" font-weight="bold" fill="#1e1b4b">Fingroww — Personal Finance Dashboard</text>
+  <text x="570" y="98" text-anchor="middle" font-size="10" font-style="italic" fill="#6b7280">«system»</text>
+
+  <!-- ══════════════════ GUEST ACTOR ══════════════════ -->
+  <circle cx="57" cy="190" r="15" fill="#dae8fc" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="57" y1="205" x2="57" y2="248" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="35" y1="222" x2="79" y2="222" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="57" y1="248" x2="37" y2="276" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="57" y1="248" x2="77" y2="276" stroke="#4f46e5" stroke-width="2"/>
+  <text x="57" y="295" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e1b4b">Guest</text>
+
+  <!-- ══════════════════ REGISTERED USER ACTOR ══════════════════ -->
+  <circle cx="1138" cy="318" r="15" fill="#d5e8d4" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="1138" y1="333" x2="1138" y2="376" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="1116" y1="350" x2="1160" y2="350" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="1138" y1="376" x2="1118" y2="403" stroke="#4f46e5" stroke-width="2"/>
+  <line x1="1138" y1="376" x2="1158" y2="403" stroke="#4f46e5" stroke-width="2"/>
+  <text x="1138" y="422" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e1b4b">Registered</text>
+  <text x="1138" y="436" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e1b4b">User</text>
+
+  <!-- ══════════════════ GROQ AI EXTERNAL SYSTEM ══════════════════ -->
+  <rect x="1046" y="695" width="136" height="64" rx="7" fill="#fff7ed" stroke="#d97706" stroke-width="2"/>
+  <text x="1114" y="715" text-anchor="middle" font-size="9" font-style="italic" fill="#92400e">«external system»</text>
+  <text x="1114" y="731" text-anchor="middle" font-size="12" font-weight="bold" fill="#1e1b4b">Groq API</text>
+  <text x="1114" y="748" text-anchor="middle" font-size="9" fill="#6b7280">Llama 3.3-70B</text>
+
+  <!-- ══════════════════ USE CASES ══════════════════ -->
+
+  <!-- ROW 1 — Authentication (cy=170) -->
+  <ellipse cx="267" cy="170" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="267" y="166">Register</tspan><tspan x="267" dy="14">Account</tspan></text>
+
+  <ellipse cx="505" cy="170" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="505" y="166">Login /</tspan><tspan x="505" dy="14">Sign In</tspan></text>
+
+  <ellipse cx="745" cy="170" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="745" y="166">Complete</tspan><tspan x="745" dy="14">Onboarding</tspan></text>
+
+  <!-- ROW 2 — Dashboard & AI (cy=295) -->
+  <ellipse cx="267" cy="295" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="10.5" fill="#1e1b4b"><tspan x="267" y="291">View Dashboard &amp;</tspan><tspan x="267" dy="13">Health Score</tspan></text>
+
+  <ellipse cx="505" cy="295" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="505" y="291">Monthly</tspan><tspan x="505" dy="14">Check-in</tspan></text>
+
+  <ellipse cx="745" cy="295" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="10.5" fill="#1e1b4b"><tspan x="745" y="291">Get AI Financial</tspan><tspan x="745" dy="13">Analysis</tspan></text>
+
+  <!-- ROW 3 — Core Finance (cy=420) -->
+  <ellipse cx="267" cy="420" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="10.5" fill="#1e1b4b"><tspan x="267" y="416">Add / Manage</tspan><tspan x="267" dy="13">Debts</tspan></text>
+
+  <ellipse cx="505" cy="420" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="505" y="416">Set &amp; Track</tspan><tspan x="505" dy="14">Goals</tspan></text>
+
+  <ellipse cx="745" cy="420" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="10.5" fill="#1e1b4b"><tspan x="745" y="416">Monitor Emergency</tspan><tspan x="745" dy="13">Fund</tspan></text>
+
+  <!-- ROW 4 — Assets & Borrow (cy=543) -->
+  <ellipse cx="267" cy="543" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="267" y="539">View</tspan><tspan x="267" dy="14">Net Worth</tspan></text>
+
+  <ellipse cx="505" cy="543" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="10.5" fill="#1e1b4b"><tspan x="505" y="539">Manage Assets &amp;</tspan><tspan x="505" dy="13">Investments</tspan></text>
+
+  <ellipse cx="745" cy="543" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="745" y="539">Check Borrow</tspan><tspan x="745" dy="14">Capacity</tspan></text>
+
+  <!-- ROW 5 — History, Insights, Profile (cy=665) -->
+  <ellipse cx="267" cy="665" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="10" fill="#1e1b4b"><tspan x="267" y="661">View Financial</tspan><tspan x="267" dy="13">History (Indian FY)</tspan></text>
+
+  <ellipse cx="505" cy="665" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="10" fill="#1e1b4b"><tspan x="505" y="661">View Rule-based</tspan><tspan x="505" dy="13">Insights (11 rules)</tspan></text>
+
+  <ellipse cx="745" cy="665" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="745" y="661">Edit Profile</tspan><tspan x="745" dy="14">Settings</tspan></text>
+
+  <!-- ROW 6 — Auto-triggered (cy=785) -->
+  <ellipse cx="505" cy="785" rx="83" ry="27" fill="white" stroke="#4f46e5" stroke-width="1.5"/>
+  <text text-anchor="middle" font-size="11" fill="#1e1b4b"><tspan x="505" y="781">Save Monthly</tspan><tspan x="505" dy="14">Snapshot</tspan></text>
+
+  <!-- ══════════════════ ACTOR ASSOCIATIONS ══════════════════ -->
+
+  <!-- Guest → Register Account -->
+  <line x1="72" y1="212" x2="184" y2="176" stroke="#4f46e5" stroke-width="1.5"/>
+  <!-- Guest → Login -->
+  <line x1="72" y1="224" x2="422" y2="180" stroke="#4f46e5" stroke-width="1.5"/>
+
+  <!-- Registered User → use cases (from hip level ~y=360) -->
+  <line x1="1123" y1="342" x2="588" y2="176" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="346" x2="828" y2="174" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="351" x2="350" y2="298" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="356" x2="588" y2="296" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="361" x2="350" y2="423" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="365" x2="588" y2="422" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="369" x2="828" y2="422" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="373" x2="350" y2="545" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="377" x2="588" y2="544" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="381" x2="828" y2="545" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="385" x2="350" y2="666" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="389" x2="588" y2="666" stroke="#4f46e5" stroke-width="1.5"/>
+  <line x1="1123" y1="393" x2="828" y2="666" stroke="#4f46e5" stroke-width="1.5"/>
+
+  <!-- ══════════════════ «INCLUDE» RELATIONSHIPS ══════════════════ -->
+
+  <!-- uc4 →«include»→ uc5  (View Dashboard → Monthly Check-in) -->
+  <line x1="350" y1="295" x2="422" y2="295"
+        stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="6,3"
+        marker-end="url(#arrInc)"/>
+  <text x="386" y="286" text-anchor="middle" font-size="9" font-style="italic" fill="#4f46e5">«include»</text>
+
+  <!-- uc4 →«include»→ uc6  (View Dashboard → Get AI Analysis) -->
+  <path d="M 350 288 Q 505 264 662 288"
+        stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="6,3" fill="none"
+        marker-end="url(#arrInc)"/>
+  <text x="505" y="259" text-anchor="middle" font-size="9" font-style="italic" fill="#4f46e5">«include»</text>
+
+  <!-- uc4 →«include»→ uc16 (View Dashboard → Save Monthly Snapshot) -->
+  <path d="M 267 322 C 208 555 375 770 422 785"
+        stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="6,3" fill="none"
+        marker-end="url(#arrInc)"/>
+  <text x="215" y="555" text-anchor="middle" font-size="9" font-style="italic" fill="#4f46e5">«include»</text>
+
+  <!-- uc6 ──calls──→ Groq AI -->
+  <line x1="828" y1="302" x2="1046" y2="703"
+        stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,4"
+        marker-end="url(#arrGold)"/>
+  <!-- label along the line -->
+  <text font-size="9" font-style="italic" fill="#d97706">
+    <textPath href="#groqPath" startOffset="28%">calls inference</textPath>
+  </text>
+  <defs>
+    <path id="groqPath" d="M 828 302 L 1046 703"/>
+  </defs>
+
+  <!-- ══════════════════ LEGEND ══════════════════ -->
+  <rect x="138" y="886" width="458" height="24" rx="5" fill="white" stroke="#c7d2fe" stroke-width="1"/>
+  <line x1="152" y1="898" x2="182" y2="898" stroke="#4f46e5" stroke-width="1.5"/>
+  <text x="190" y="902" font-size="9" fill="#4f46e5">association</text>
+  <line x1="252" y1="898" x2="282" y2="898" stroke="#4f46e5" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrInc)"/>
+  <text x="292" y="902" font-size="9" fill="#4f46e5">«include»</text>
+  <line x1="360" y1="898" x2="390" y2="898" stroke="#d97706" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#arrGold)"/>
+  <text x="398" y="902" font-size="9" fill="#d97706">external call</text>
+  <text x="465" y="902" font-size="9" fill="#9ca3af">UML 2.5</text>
+
+</svg>

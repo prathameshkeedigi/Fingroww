@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Project — Fingroww</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#4f46e5;--primary-light:#6366f1;--primary-pale:#eef2ff;
+  --text-dark:#1e1b4b;--text-mid:#374151;--text-light:#9ca3af;
+  --bg-white:#fff;--bg-soft:#eef2ff;--bg-cream:#f8f9ff;--border:#c7d2fe;
+  --shadow:0 4px 24px rgba(79,70,229,0.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg-cream);color:var(--text-dark);padding:112px 8% 72px;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #c7d2fe;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:56px;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#4f46e5;text-decoration:none;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.85rem;font-weight:500;color:#374151;padding:8px 14px;border-radius:7px;transition:.18s;}
+.nav-links a:hover,.nav-links a.active{background:#eef2ff;color:#4f46e5;}
+
+.page-label{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--primary);margin-bottom:.6rem;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:.75rem;}
+.divider{width:56px;height:4px;background:var(--primary);border-radius:2px;margin-bottom:.75rem;}
+.desc{font-size:.975rem;color:var(--text-mid);line-height:1.75;max-width:640px;margin-bottom:2rem;}
+
+.tabs{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:1rem;border-bottom:1px solid var(--border);}
+.tab{
+  padding:8px 20px;border-radius:8px;cursor:pointer;font-size:.855rem;font-weight:600;
+  border:1.5px solid var(--border);background:var(--bg-white);color:var(--text-mid);transition:.18s;
+  user-select:none;
+}
+.tab.active{background:var(--primary);color:#fff;border-color:var(--primary);}
+.tab:hover:not(.active){border-color:var(--primary);color:var(--primary);}
+
+.pane{display:none;}
+.pane.active{display:block;}
+
+.card{background:var(--bg-white);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:1.5rem;}
+.card h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text-dark);margin-bottom:1rem;}
+.card p{font-size:.935rem;color:var(--text-mid);line-height:1.78;margin-bottom:.75rem;}
+.card p:last-child{margin-bottom:0;}
+
+.highlight{background:var(--primary-pale);border-left:4px solid var(--primary);border-radius:0 10px 10px 0;padding:1rem 1.5rem;margin:1rem 0;}
+.highlight p{color:var(--text-dark)!important;font-weight:600;margin:0;}
+
+.obj-list{list-style:none;margin-top:.5rem;}
+.obj-list li{padding:.6rem 0 .6rem 1.6rem;position:relative;font-size:.92rem;color:var(--text-mid);border-bottom:1px solid var(--bg-soft);line-height:1.65;}
+.obj-list li:last-child{border:none;}
+.obj-list li::before{content:'';position:absolute;left:0;top:52%;transform:translateY(-50%);width:9px;height:9px;border-radius:50%;background:var(--primary);}
+
+/* arch */
+.arch{background:var(--bg-soft);border:1px solid var(--border);border-radius:14px;padding:1.75rem;margin:1.25rem 0;}
+.arch-layer{border:2px solid var(--border);border-radius:10px;padding:1rem;margin-bottom:.75rem;background:var(--bg-white);position:relative;}
+.arch-layer:last-child{margin:0;}
+.layer-label{position:absolute;top:-12px;left:1rem;background:var(--primary);color:#fff;font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;padding:2px 10px;border-radius:4px;}
+.chips{display:flex;flex-wrap:wrap;gap:.45rem;justify-content:center;margin-top:.6rem;}
+.chip{background:var(--primary-pale);border:1px solid var(--primary);color:var(--primary);border-radius:6px;padding:4px 11px;font-size:.79rem;font-weight:600;}
+.arrow{text-align:center;color:var(--primary-light);font-size:1.3rem;margin:.3rem 0;}
+
+/* module grid */
+.module-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:1rem;}
+.module-card{background:var(--bg-white);border:1px solid var(--border);border-radius:12px;padding:1.2rem;transition:.2s;}
+.module-card:hover{border-color:var(--primary-light);box-shadow:var(--shadow);}
+.mod-num{font-size:.72rem;font-weight:700;color:var(--primary);letter-spacing:.1em;text-transform:uppercase;margin-bottom:.35rem;}
+.mod-title{font-weight:700;font-size:.92rem;color:var(--text-dark);margin-bottom:.35rem;}
+.mod-desc{font-size:.8rem;color:var(--text-mid);line-height:1.5;}
+
+/* tech grid */
+.tech-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(155px,1fr));gap:.9rem;margin-top:.5rem;}
+.tech-item{background:var(--bg-soft);border:1px solid var(--border);border-radius:10px;padding:.85rem .95rem;display:flex;gap:.7rem;align-items:flex-start;}
+.ti-ico{font-size:1.35rem;}
+.ti-name{font-size:.83rem;font-weight:700;color:var(--text-dark);}
+.ti-role{font-size:.73rem;color:var(--text-mid);margin-top:2px;}
+
+/* sprint table */
+.sprint-table{width:100%;border-collapse:collapse;font-size:.855rem;margin-top:.75rem;}
+.sprint-table th{background:var(--primary);color:#fff;padding:.65rem 1rem;text-align:left;font-weight:600;}
+.sprint-table td{padding:.6rem 1rem;border-bottom:1px solid var(--border);color:var(--text-mid);}
+.sprint-table tr:last-child td{border:none;}
+.sprint-table tr:hover td{background:var(--bg-soft);}
+.badge-done{background:#d1fae5;color:#065f46;display:inline-block;padding:2px 9px;border-radius:100px;font-size:.73rem;font-weight:700;}
+
+/* data flow */
+.flow{display:flex;flex-direction:column;gap:.5rem;margin:1rem 0;}
+.flow-step{display:flex;gap:.9rem;align-items:flex-start;padding:.75rem 1rem;background:var(--bg-soft);border:1px solid var(--border);border-radius:10px;}
+.step-num{background:var(--primary);color:#fff;border-radius:50%;width:24px;height:24px;min-width:24px;display:flex;align-items:center;justify-content:center;font-size:.72rem;font-weight:700;margin-top:1px;}
+.step-text{font-size:.855rem;color:var(--text-mid);line-height:1.55;}
+.step-text strong{color:var(--text-dark);}
+
+/* future */
+.future-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:.9rem;}
+.future-item{background:var(--bg-soft);border:1px solid var(--border);border-radius:12px;padding:1.1rem 1.3rem;font-size:.885rem;color:var(--text-mid);line-height:1.6;display:flex;gap:.7rem;}
+.future-item::before{content:'→';color:var(--primary);font-weight:700;flex-shrink:0;margin-top:1px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="1_home.html" class="nav-brand">Prathamesh · Fingroww</a>
+  <ul class="nav-links">
+    <li><a href="1_home.html">Home</a></li>
+    <li><a href="2_about.html">About</a></li>
+    <li><a href="3_learnings.html">Learnings</a></li>
+    <li><a href="4_project.html" class="active">Project</a></li>
+    <li><a href="5_certificates.html">Certificates</a></li>
+    <li><a href="6_contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-label">My Work</div>
+<h1>Fingroww — Personal Finance Dashboard</h1>
+<div class="divider"></div>
+<p class="desc">A full-stack personal finance operating system for Indian working professionals — combining a Financial Health Score, debt payoff simulation, goal planning, emergency fund tracking, net worth analysis, AI recommendations, and 6-month delta charts in one authenticated dashboard.</p>
+
+<div class="tabs">
+  <div class="tab active" onclick="show('problem',this)">Problem Statement</div>
+  <div class="tab" onclick="show('arch',this)">Architecture</div>
+  <div class="tab" onclick="show('modules',this)">Modules</div>
+  <div class="tab" onclick="show('tech',this)">Tech Stack</div>
+  <div class="tab" onclick="show('sprints',this)">Sprints</div>
+  <div class="tab" onclick="show('future',this)">Future Scope</div>
+</div>
+
+<!-- PROBLEM -->
+<div class="pane active" id="pane-problem">
+  <div class="card">
+    <h2>📋 Problem Statement</h2>
+    <p>Young Indian professionals earning ₹30,000–₹1,50,000/month face a consistent problem: they have income but no structured system to understand where they stand financially. Most existing apps are either expense trackers (Walnut, Money Manager) or investment platforms (Groww, Zerodha) — none provide a unified financial health assessment across savings, debt, goals, and emergency preparedness simultaneously.</p>
+    <div class="highlight"><p>Key gap: No single free platform gives Indian professionals a real-time, data-driven financial health score with specific, personalised action steps — all in one authenticated dashboard.</p></div>
+    <p>Users carry high-interest credit card debt while their savings sit idle, missing the opportunity to pay it off faster. They set financial goals without knowing whether they're realistic given their actual surplus. They have no emergency fund coverage estimate calibrated to their employment type and number of dependents. Financial decisions are made with incomplete information.</p>
+  </div>
+
+  <div class="card">
+    <h2>🎯 Project Objectives</h2>
+    <ul class="obj-list">
+      <li>Design and develop a unified, authenticated personal finance dashboard for Indian professionals aged 22–40.</li>
+      <li>Implement a Financial Health Score (0–100) computed across four components: savings rate, debt-to-income ratio, emergency fund coverage, and income level.</li>
+      <li>Build a monthly check-in system so users can enter real actuals (income, expenses, bank balance) to override profile estimates — making all calculators use real data.</li>
+      <li>Simulate debt payoff timelines using the mathematically optimal avalanche strategy, with an interactive extra payment slider.</li>
+      <li>Provide goal planning with SIP-based required monthly investment and probability scoring based on the user's actual available surplus.</li>
+      <li>Implement an AI financial analysis module using Groq + Llama 3.3-70B that generates 3 specific, personalised recommendations per month — with pre-computed numbers only, never AI arithmetic.</li>
+      <li>Build historical tracking across the Indian Financial Year (April–March) with a delta bar chart comparing any two filled months.</li>
+      <li>Enforce Row Level Security at the database layer — not just application layer — for complete user data isolation.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>📌 What Makes Fingroww Different</h2>
+    <div class="flow">
+      <div class="flow-step"><div class="step-num">1</div><div class="step-text"><strong>One snapshot, all modules.</strong> A single <code>getFinancialSnapshot()</code> function runs 6 parallel DB queries + 5 calculators and returns one object. Every page draws from this — no duplicated fetches, no inconsistent numbers across tabs.</div></div>
+      <div class="flow-step"><div class="step-num">2</div><div class="step-text"><strong>Active vs. Estimated values.</strong> If the user has done a monthly check-in, real actuals are used everywhere. If not, profile estimates are the fallback. The distinction is transparent to the user via a "Last updated" badge.</div></div>
+      <div class="flow-step"><div class="step-num">3</div><div class="step-text"><strong>AI that never does math.</strong> Llama 3.3-70B receives only pre-computed numbers. The prompt explicitly says "Do NOT calculate." This eliminates LLM hallucination on financial figures — the most common failure mode of AI finance tools.</div></div>
+      <div class="flow-step"><div class="step-num">4</div><div class="step-text"><strong>Database-layer security.</strong> All 6 tables have Row Level Security with USING + WITH CHECK. Even a compromised application layer cannot read another user's data — the database rejects the query.</div></div>
+      <div class="flow-step"><div class="step-num">5</div><div class="step-text"><strong>Indian context built-in.</strong> IST timezone handling, Indian Financial Year (April–March), employment-type-aware emergency targets, INR formatting with lakh/crore notation, 80C tax deduction gap detection for salaried users.</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- ARCHITECTURE -->
+<div class="pane" id="pane-arch">
+  <div class="card">
+    <h2>🏗️ System Architecture — 4-Layer Design</h2>
+    <p>Fingroww is a server-first Next.js 14 App Router application. There is no separate backend server — data fetching and mutations happen via Server Components and Server Actions directly connected to Supabase PostgreSQL.</p>
+    <div class="arch">
+      <div class="arch-layer">
+        <div class="layer-label">Presentation Layer</div>
+        <div class="chips" style="margin-top:.7rem;">
+          <span class="chip">Next.js 14 App Router</span>
+          <span class="chip">Server Components (data)</span>
+          <span class="chip">Client Components (interactivity only)</span>
+          <span class="chip">Tailwind CSS (dark theme)</span>
+          <span class="chip">Recharts (charts)</span>
+          <span class="chip">Lucide Icons</span>
+        </div>
+      </div>
+      <div class="arrow">↓ Server Actions (9 action files — no REST endpoints)</div>
+      <div class="arch-layer">
+        <div class="layer-label">Application Layer</div>
+        <div class="chips" style="margin-top:.7rem;">
+          <span class="chip">getFinancialSnapshot() — 6 parallel queries</span>
+          <span class="chip">Debt Avalanche Calculator</span>
+          <span class="chip">Goal SIP Calculator</span>
+          <span class="chip">Emergency Fund Calculator</span>
+          <span class="chip">Health Score (0–100)</span>
+          <span class="chip">Insights Engine (11 rules)</span>
+          <span class="chip">Groq AI Summary</span>
+        </div>
+      </div>
+      <div class="arrow">↓ Supabase JS Client (server-side, server-validated JWT)</div>
+      <div class="arch-layer">
+        <div class="layer-label">Data Layer</div>
+        <div class="chips" style="margin-top:.7rem;">
+          <span class="chip">Supabase PostgreSQL</span>
+          <span class="chip">financial_profiles</span>
+          <span class="chip">debts</span>
+          <span class="chip">goals</span>
+          <span class="chip">assets</span>
+          <span class="chip">monthly_records</span>
+          <span class="chip">monthly_snapshots</span>
+          <span class="chip">RLS on all 6 tables</span>
+        </div>
+      </div>
+      <div class="arrow">↓ Groq API (Llama 3.3-70B) for AI Financial Analysis</div>
+      <div class="arch-layer">
+        <div class="layer-label">Integration Layer</div>
+        <div class="chips" style="margin-top:.7rem;">
+          <span class="chip">Supabase Auth (JWT)</span>
+          <span class="chip">Groq SDK</span>
+          <span class="chip">Next.js Middleware (getUser validation)</span>
+          <span class="chip">Vercel Deployment</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>🔒 Auth & Security Model</h2>
+    <p>Every request passes through Next.js middleware which calls <code>supabase.auth.getUser()</code> — this validates the JWT on the Supabase server, not from the browser cookie. This prevents session cookie spoofing. Unauthenticated users are redirected to <code>/login</code>. Users without a profile are redirected to <code>/onboarding</code>.</p>
+    <div class="highlight"><p>Security is enforced at two independent layers: middleware (application) + Row Level Security (database). A broken app cannot leak another user's data.</p></div>
+    <p>All 6 tables use RLS policies with both USING (controls SELECT/DELETE) and WITH CHECK (controls INSERT/UPDATE). The policy is always <code>auth.uid() = user_id</code>. No service-role key is exposed to the frontend.</p>
+  </div>
+
+  <div class="card">
+    <h2>📊 Data Flow — Dashboard Load</h2>
+    <div class="flow">
+      <div class="flow-step"><div class="step-num">1</div><div class="step-text"><strong>User visits /dashboard</strong> → Next.js middleware validates JWT via getUser() → passes to DashboardPage (Server Component)</div></div>
+      <div class="flow-step"><div class="step-num">2</div><div class="step-text"><strong>getFinancialSnapshot(userId)</strong> → 6 parallel Supabase queries: profile, debts, goals, assets, monthly_record (this month), snapshots (last 6)</div></div>
+      <div class="flow-step"><div class="step-num">3</div><div class="step-text"><strong>Active values resolved</strong>: active_income / active_expenses = checkin values OR profile estimates. active_savings = checkin.savings_balance OR profile.savings_balance (most recent, no month gate)</div></div>
+      <div class="flow-step"><div class="step-num">4</div><div class="step-text"><strong>5 calculators run</strong> in sequence: debt payoff → goal SIP → emergency fund → health score (needs all prior) → insights engine (needs all prior)</div></div>
+      <div class="flow-step"><div class="step-num">5</div><div class="step-text"><strong>Full snapshot returned</strong> → Dashboard UI renders with health gauge, net worth, surplus, insights, goals, AI analysis</div></div>
+      <div class="flow-step"><div class="step-num">6</div><div class="step-text"><strong>SnapshotSaver client component</strong> fires saveSnapshot() via useEffect → upserts monthly_snapshots (including ai_summary: null to clear stale cache) → generateAISummary called → Groq returns 3 recommendations → stored in DB</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- MODULES -->
+<div class="pane" id="pane-modules">
+  <div class="card">
+    <h2>🧩 Core Functional Modules</h2>
+    <div class="module-grid">
+      <div class="module-card">
+        <div class="mod-num">Module 01</div>
+        <div class="mod-title">Authentication & Onboarding</div>
+        <div class="mod-desc">Email/password login via Supabase Auth. Middleware protects all routes. One-time onboarding form captures income, expenses, savings, employment type, risk profile, age, dependents.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 02</div>
+        <div class="mod-title">Dashboard</div>
+        <div class="mod-desc">Health score gauge, net worth sparkline, monthly flow card (income/expenses/EMIs/surplus), top 3 insights, goals progress bars, AI analysis tiles. Auto-saves snapshot on every load.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 03</div>
+        <div class="mod-title">Debt Management</div>
+        <div class="mod-desc">Add/edit/delete debts (6 categories). Avalanche payoff simulation: ordered by interest rate, shows months to debt-free + total interest. Extra payment slider persisted to profile.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 04</div>
+        <div class="mod-title">Goal Planning</div>
+        <div class="mod-desc">Create goals with target amount, date, expected return, priority. System computes required SIP and probability of success based on available surplus after higher-priority goals.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 05</div>
+        <div class="mod-title">Emergency Fund</div>
+        <div class="mod-desc">Coverage months vs. target (employment-type + dependents aware). Status: Funded / Partial / Danger. Shortfall amount + build plan with milestones given current monthly surplus.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 06</div>
+        <div class="mod-title">Net Worth</div>
+        <div class="mod-desc">Assets CRUD across 9 categories (bank savings, FD, mutual funds, stocks, PPF, EPF, gold, real estate, other). Net worth = total assets − total active debt. Delta from last snapshot.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 07</div>
+        <div class="mod-title">Profile & Monthly Check-in</div>
+        <div class="mod-desc">Edit profile estimates. Enter actual income, expenses, bank balance for this month. Once submitted, all calculators switch from estimates to real monthly data instantly.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 08</div>
+        <div class="mod-title">History & Delta Chart</div>
+        <div class="mod-desc">Indian FY month grid (April–March). Enter actuals for any past month. Delta compare: pick any 2 filled months → 4 metric cards + direction-aware colour-coded bar chart (Recharts).</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 09</div>
+        <div class="mod-title">Insights Engine</div>
+        <div class="mod-desc">11-rule rule engine evaluates every session. Up to 8 prioritised insights (Critical → High → Medium → Low) with action links to the relevant module. Health score component breakdown bars shown.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 10</div>
+        <div class="mod-title">AI Financial Analysis</div>
+        <div class="mod-desc">Groq + Llama 3.3-70B generates 3 specific monthly recommendations. AI receives pre-computed numbers only — never calculates. Cached in monthly_snapshots, regenerated when data changes.</div>
+      </div>
+      <div class="module-card">
+        <div class="mod-num">Module 11</div>
+        <div class="mod-title">Invest & Borrow</div>
+        <div class="mod-desc">Invest: SIP calculator with 80C deduction gap flag for salaried users. Borrow: Loan simulator — enter any loan parameters, see EMI, post-loan surplus, and new DTI (colour-coded: safe/caution/danger).</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TECH -->
+<div class="pane" id="pane-tech">
+  <div class="card">
+    <h2>💻 Technology Stack</h2>
+    <p style="margin-bottom:1.25rem;">Fingroww is built on a server-first Next.js stack with Supabase as the integrated backend-as-a-service — eliminating the need for a separate Express server or API layer.</p>
+    <div class="tech-grid">
+      <div class="tech-item"><div class="ti-ico">⚛️</div><div><div class="ti-name">Next.js 14</div><div class="ti-role">App Router (server-first)</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🧩</div><div><div class="ti-name">React 18</div><div class="ti-role">UI Components & Hooks</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🎨</div><div><div class="ti-name">Tailwind CSS</div><div class="ti-role">Dark Theme UI</div></div></div>
+      <div class="tech-item"><div class="ti-ico">📊</div><div><div class="ti-name">Recharts</div><div class="ti-role">Charts & Visualisations</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🗃️</div><div><div class="ti-name">Supabase</div><div class="ti-role">PostgreSQL + Auth + RLS</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🔐</div><div><div class="ti-name">Supabase Auth</div><div class="ti-role">JWT Authentication</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🤖</div><div><div class="ti-name">Groq SDK</div><div class="ti-role">AI API Client</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🦙</div><div><div class="ti-name">Llama 3.3-70B</div><div class="ti-role">AI Financial Analysis</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🔢</div><div><div class="ti-name">Decimal.js</div><div class="ti-role">Precision Arithmetic</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🧪</div><div><div class="ti-name">Jest</div><div class="ti-role">Unit & Integration Tests</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🎭</div><div><div class="ti-name">Playwright</div><div class="ti-role">E2E Testing</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🔣</div><div><div class="ti-name">Lucide React</div><div class="ti-role">Icon System</div></div></div>
+      <div class="tech-item"><div class="ti-ico">📅</div><div><div class="ti-name">date-fns</div><div class="ti-role">Date Utilities</div></div></div>
+      <div class="tech-item"><div class="ti-ico">🐙</div><div><div class="ti-name">Git & GitHub</div><div class="ti-role">Version Control</div></div></div>
+      <div class="tech-item"><div class="ti-ico">▲</div><div><div class="ti-name">Vercel</div><div class="ti-role">Deployment</div></div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SPRINTS -->
+<div class="pane" id="pane-sprints">
+  <div class="card">
+    <h2>🏃 Sprint 1 — Auth, Onboarding & Database Schema</h2>
+    <p style="font-size:.82rem;color:var(--text-light);margin-bottom:.25rem;">Goal: Secure authentication, complete DB schema with RLS, onboarding form.</p>
+    <table class="sprint-table">
+      <tr><th>Task</th><th>Story</th><th>Status</th></tr>
+      <tr><td>Login/register UI with Supabase Auth integration</td><td>US1</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Next.js middleware with getUser() JWT validation</td><td>US1</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>6 Supabase migrations: all tables created with RLS</td><td>—</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Onboarding multi-field form with server action</td><td>US1</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>IST timezone utility (istYearMonth, istMonthKey)</td><td>—</td><td><span class="badge-done">Done</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>📊 Sprint 2 — Dashboard, Health Score & Snapshot System</h2>
+    <p style="font-size:.82rem;color:var(--text-light);margin-bottom:.25rem;">Goal: Central data function + dashboard UI + snapshot auto-save.</p>
+    <table class="sprint-table">
+      <tr><th>Task</th><th>Story</th><th>Status</th></tr>
+      <tr><td>getFinancialSnapshot: 6 parallel queries + 5 calculator chain</td><td>US2</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Health Score calculator (4-component, 0–100, 4 status levels)</td><td>US2</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Dashboard UI: health gauge, net worth card, monthly flow, goals bars</td><td>US2</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>SnapshotSaver client component (useEffect → saveSnapshot)</td><td>US2</td><td><span class="badge-done">Done</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🧮 Sprint 3 — Debt, Goals, Emergency Fund & Monthly Check-in</h2>
+    <p style="font-size:.82rem;color:var(--text-light);margin-bottom:.25rem;">Goal: All financial calculators with real data resolution.</p>
+    <table class="sprint-table">
+      <tr><th>Task</th><th>Story</th><th>Status</th></tr>
+      <tr><td>Debt avalanche simulator with extra payment slider (persisted)</td><td>US4</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Goal SIP calculator + probability scoring + priority surplus cascade</td><td>US5</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Emergency fund calculator (employment-type-aware targets)</td><td>US6</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Monthly check-in form: actual income / expenses / bank balance</td><td>US3</td><td><span class="badge-done">Done</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>📈 Sprint 4 — Net Worth, History & Delta Chart</h2>
+    <p style="font-size:.82rem;color:var(--text-light);margin-bottom:.25rem;">Goal: Asset tracking, historical records, delta bar chart.</p>
+    <table class="sprint-table">
+      <tr><th>Task</th><th>Story</th><th>Status</th></tr>
+      <tr><td>Assets CRUD (9 categories) + net worth computation</td><td>US7</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>History module: Indian FY month grid + actuals entry forms</td><td>US8</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Delta compare: 2-month picker + 4 metric cards + Recharts bar chart</td><td>US8</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Direction-aware colour coding: indigo = improved, rose = worsened</td><td>US8</td><td><span class="badge-done">Done</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>💡 Sprint 5 — Insights Engine, Invest & Borrow</h2>
+    <p style="font-size:.82rem;color:var(--text-light);margin-bottom:.25rem;">Goal: Rule-based insights, SIP calculator, loan affordability checker.</p>
+    <table class="sprint-table">
+      <tr><th>Task</th><th>Story</th><th>Status</th></tr>
+      <tr><td>11-rule insights engine with priority sort + 8-insight cap</td><td>US9</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Insights page with health score component breakdown bars</td><td>US9</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Invest page: SIP calculator + 80C deduction gap detection</td><td>—</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Borrow: EMI simulator + post-loan surplus + DTI (colour-coded)</td><td>US10</td><td><span class="badge-done">Done</span></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h2>🤖 Sprint 6 — AI Integration, Testing & Deployment</h2>
+    <p style="font-size:.82rem;color:var(--text-light);margin-bottom:.25rem;">Goal: Groq AI, 647 Jest tests, E2E, deployment.</p>
+    <table class="sprint-table">
+      <tr><th>Task</th><th>Story</th><th>Status</th></tr>
+      <tr><td>Groq SDK + Llama 3.3-70B integration + pre-computed prompt</td><td>US11</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>AI summary caching in monthly_snapshots + ai_summary: null fix</td><td>US11</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>647 Jest unit + integration tests across 28 test suites</td><td>—</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Playwright E2E tests for auth and onboarding flows</td><td>—</td><td><span class="badge-done">Done</span></td></tr>
+      <tr><td>Vercel deployment + environment variable configuration</td><td>—</td><td><span class="badge-done">Done</span></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- FUTURE -->
+<div class="pane" id="pane-future">
+  <div class="card">
+    <h2>🚀 Future Enhancements</h2>
+    <p style="margin-bottom:1.5rem;">Fingroww's architecture is designed to support these planned enhancements in future phases:</p>
+    <div class="future-grid">
+      <div class="future-item">Mobile PWA with offline support and push notifications for monthly check-in reminders.</div>
+      <div class="future-item">UPI transaction auto-import to pre-fill monthly check-in income and expense data.</div>
+      <div class="future-item">Multi-currency support for NRIs tracking assets across USD, AED, and other currencies.</div>
+      <div class="future-item">Vernacular language interface (Hindi, Kannada, Marathi) to reach Tier-2/3 city users.</div>
+      <div class="future-item">Financial report export as PDF — monthly snapshot with all charts and AI summary.</div>
+      <div class="future-item">Claude API integration for conversational financial Q&amp;A using the same pre-computed data context.</div>
+      <div class="future-item">Spouse/family portfolio view — shared financial health score with individual breakdowns.</div>
+      <div class="future-item">Tax computation module: ITR estimate with deduction optimisation under 80C, 80D, HRA.</div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>📄 Conclusion</h2>
+    <p>Fingroww successfully implements a comprehensive personal finance operating system for Indian professionals — combining secure authentication, real-data monthly check-ins, 5 independent financial calculators, a rule-based insights engine, AI-powered analysis, and historical trend visualisation in one unified, server-rendered dashboard.</p>
+    <div class="highlight"><p>Built with Next.js 14, Supabase (PostgreSQL + RLS), Groq + Llama 3.3-70B, and validated by 647 automated tests — Fingroww demonstrates how modern web technologies can deliver enterprise-grade financial software for everyday users.</p></div>
+    <p>The project directly aligns with SDG 8 (Decent Work and Economic Growth) by giving Indian professionals the tools to understand their financial position and make data-driven decisions — reducing debt stress, building emergency savings, and planning achievable financial goals.</p>
+  </div>
+</div>
+
+<script>
+function show(id, el) {
+  document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('pane-' + id).classList.add('active');
+  el.classList.add('active');
+}
+</script>
+</body>
+</html>

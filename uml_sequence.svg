@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1300" height="960" viewBox="0 0 1300 960" style="font-family: Arial, Helvetica, sans-serif;">
+  <defs>
+    <marker id="call" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polygon points="0 0, 9 4, 0 8" fill="#1e1b4b"/>
+    </marker>
+    <marker id="ret" markerWidth="10" markerHeight="8" refX="9" refY="4" orient="auto">
+      <polyline points="0 0, 9 4, 0 8" fill="none" stroke="#6b7280" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1300" height="960" fill="#f8f9ff"/>
+
+  <!-- Title -->
+  <text x="650" y="22" text-anchor="middle" font-size="16" font-weight="bold" fill="#1e1b4b">Fingroww — Dashboard Load Sequence Diagram</text>
+  <text x="650" y="39" text-anchor="middle" font-size="10" fill="#6b7280">Client Request → JWT Auth → Server Rendering → Snapshot Save → AI Analysis</text>
+
+  <!-- ══════════════════ PARTICIPANT BOXES ══════════════════ -->
+  <!-- cx values: Browser=90  Next.js=300  Supabase=560  Calculators=840  Groq=1120 -->
+
+  <rect x="8"   y="48" width="164" height="44" rx="7" fill="#dae8fc" stroke="#4f46e5" stroke-width="2"/>
+  <text x="90"  y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e1b4b">Browser</text>
+  <text x="90"  y="82" text-anchor="middle" font-size="9"  fill="#6b7280">Client</text>
+
+  <rect x="196" y="48" width="208" height="44" rx="7" fill="#eef2ff" stroke="#4f46e5" stroke-width="2"/>
+  <text x="300" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e1b4b">Next.js App</text>
+  <text x="300" y="82" text-anchor="middle" font-size="9"  fill="#6b7280">Middleware + Server Components</text>
+
+  <rect x="452" y="48" width="216" height="44" rx="7" fill="#d5e8d4" stroke="#4f46e5" stroke-width="2"/>
+  <text x="560" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e1b4b">Supabase DB</text>
+  <text x="560" y="82" text-anchor="middle" font-size="9"  fill="#6b7280">PostgreSQL + Auth + RLS</text>
+
+  <rect x="722" y="48" width="236" height="44" rx="7" fill="#fff2cc" stroke="#4f46e5" stroke-width="2"/>
+  <text x="840" y="63" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e1b4b">Financial Calculators</text>
+  <text x="840" y="80" text-anchor="middle" font-size="9"  fill="#6b7280">Debt · Goals · EmFund · Health · Insights</text>
+
+  <rect x="1035" y="48" width="170" height="44" rx="7" fill="#fce8e6" stroke="#4f46e5" stroke-width="2"/>
+  <text x="1120" y="66" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e1b4b">Groq API</text>
+  <text x="1120" y="82" text-anchor="middle" font-size="9"  fill="#6b7280">Llama 3.3-70B</text>
+
+  <!-- ══════════════════ LIFELINES ══════════════════ -->
+  <line x1="90"   y1="92" x2="90"   y2="948" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="8,4"/>
+  <line x1="300"  y1="92" x2="300"  y2="948" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="8,4"/>
+  <line x1="560"  y1="92" x2="560"  y2="948" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="8,4"/>
+  <line x1="840"  y1="92" x2="840"  y2="948" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="8,4"/>
+  <line x1="1120" y1="92" x2="1120" y2="948" stroke="#4f46e5" stroke-width="1.3" stroke-dasharray="8,4"/>
+
+  <!-- ══════════════════ PHASE 1: SERVER-SIDE RENDERING ══════════════════ -->
+  <rect x="8" y="104" width="292" height="18" rx="3" fill="#4f46e5"/>
+  <text x="16" y="117" font-size="10" font-weight="bold" fill="white">① Server-Side Rendering Phase</text>
+
+  <!-- MSG 1: Browser → Next.js — GET /dashboard -->
+  <line x1="90" y1="140" x2="300" y2="140" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="192" y="133" text-anchor="middle" font-size="9.5" fill="#1e1b4b">1. GET /dashboard (HTTP Request)</text>
+
+  <!-- MSG 2: Next.js → Supabase — getUser() -->
+  <line x1="300" y1="178" x2="560" y2="178" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="428" y="171" text-anchor="middle" font-size="9.5" fill="#1e1b4b">2. getUser() — validate JWT (not getSession)</text>
+
+  <!-- MSG 3: Supabase → Next.js — user object (return) -->
+  <line x1="560" y1="212" x2="300" y2="212" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="428" y="205" text-anchor="middle" font-size="9.5" fill="#6b7280">3. ← Authenticated user object</text>
+
+  <!-- MSG 4: Next.js → Supabase — 6 parallel queries -->
+  <line x1="300" y1="254" x2="560" y2="254" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="428" y="244" text-anchor="middle" font-size="9" fill="#1e1b4b">4. getFinancialSnapshot() — 6 parallel queries</text>
+  <text x="428" y="256" text-anchor="middle" font-size="8.5" fill="#6b7280">(profiles, debts, goals, assets, monthly_records, monthly_snapshots)</text>
+
+  <!-- MSG 5: Supabase → Next.js — raw data (return) -->
+  <line x1="560" y1="294" x2="300" y2="294" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="428" y="287" text-anchor="middle" font-size="9.5" fill="#6b7280">5. ← Raw financial data (all 6 tables, RLS-filtered)</text>
+
+  <!-- MSG 6: Next.js → Calculators — compute -->
+  <line x1="300" y1="340" x2="840" y2="340" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="568" y="332" text-anchor="middle" font-size="9.5" fill="#1e1b4b">6. compute(rawData) — 5 independent calculators</text>
+
+  <!-- MSG 7: Calculators → Next.js — results (return) -->
+  <line x1="840" y1="380" x2="300" y2="380" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="568" y="372" text-anchor="middle" font-size="9" fill="#6b7280">7. ← { healthScore, debtPayoffPlan, goalPlan, emergencyTarget, insights[8] }</text>
+
+  <!-- MSG 8: Next.js → Browser — SSR HTML -->
+  <line x1="300" y1="424" x2="90" y2="424" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="192" y="416" text-anchor="middle" font-size="9.5" fill="#1e1b4b">8. SSR HTML — page fully rendered (Server Component)</text>
+
+  <!-- ══════════════════ SEPARATOR — CLIENT MOUNT ══════════════════ -->
+  <line x1="8" y1="454" x2="1270" y2="454" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,4"/>
+  <rect x="8" y="458" width="376" height="18" rx="3" fill="#6366f1"/>
+  <text x="16" y="471" font-size="10" font-weight="bold" fill="white">② Client Mount — SnapshotSaver useEffect fires</text>
+
+  <!-- MSG 9: Browser → Next.js — saveSnapshot() -->
+  <line x1="90" y1="496" x2="300" y2="496" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="192" y="487" text-anchor="middle" font-size="9" fill="#1e1b4b">9. saveSnapshot() Server Action</text>
+  <text x="192" y="499" text-anchor="middle" font-size="8.5" fill="#6b7280">(triggered by SnapshotSaver useEffect)</text>
+
+  <!-- MSG 10: Next.js → Supabase — UPSERT -->
+  <line x1="300" y1="537" x2="560" y2="537" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="428" y="527" text-anchor="middle" font-size="9" fill="#1e1b4b">10. UPSERT monthly_snapshots</text>
+  <text x="428" y="539" text-anchor="middle" font-size="8.5" fill="#6b7280">{ health_score, net_worth, ai_summary: null }  onConflict: user_id,month</text>
+
+  <!-- MSG 11: Supabase → Next.js — upsert success (return) -->
+  <line x1="560" y1="575" x2="300" y2="575" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="428" y="567" text-anchor="middle" font-size="9.5" fill="#6b7280">11. ← Snapshot saved (ai_summary cleared to null)</text>
+
+  <!-- ══════════════════ SEPARATOR — AI PHASE ══════════════════ -->
+  <line x1="8" y1="604" x2="1270" y2="604" stroke="#9ca3af" stroke-width="1" stroke-dasharray="4,4"/>
+  <rect x="8" y="608" width="352" height="18" rx="3" fill="#7c3aed"/>
+  <text x="16" y="621" font-size="10" font-weight="bold" fill="white">③ AI Analysis Phase — generateAISummary Server Action</text>
+
+  <!-- MSG 12: Next.js → Supabase — cache check -->
+  <line x1="300" y1="646" x2="560" y2="646" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="428" y="637" text-anchor="middle" font-size="9" fill="#1e1b4b">12. SELECT ai_summary WHERE user_id=? AND month=?</text>
+  <text x="428" y="649" text-anchor="middle" font-size="8.5" fill="#6b7280">(cache check)</text>
+
+  <!-- MSG 13: Supabase → Next.js — null (return) -->
+  <line x1="560" y1="684" x2="300" y2="684" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="428" y="675" text-anchor="middle" font-size="9.5" fill="#6b7280">13. ← null  (cache miss — cleared by step 10)</text>
+
+  <!-- MSG 14: Next.js → Groq — inference -->
+  <line x1="300" y1="730" x2="1120" y2="730" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="708" y="720" text-anchor="middle" font-size="9" fill="#1e1b4b">14. buildPrompt(preComputedData) → Llama 3.3-70B inference</text>
+  <text x="708" y="732" text-anchor="middle" font-size="8.5" fill="#6b7280">strict: "Do NOT calculate or derive numbers yourself"</text>
+
+  <!-- MSG 15: Groq → Next.js — AI text (return) -->
+  <line x1="1120" y1="778" x2="300" y2="778" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="708" y="769" text-anchor="middle" font-size="9.5" fill="#6b7280">15. ← AI financial analysis text (~300 words, personalised)</text>
+
+  <!-- MSG 16: Next.js → Supabase — cache write -->
+  <line x1="300" y1="820" x2="560" y2="820" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="428" y="812" text-anchor="middle" font-size="9" fill="#1e1b4b">16. UPDATE monthly_snapshots SET ai_summary='...'</text>
+  <text x="428" y="824" text-anchor="middle" font-size="8.5" fill="#6b7280">(cache for next load)</text>
+
+  <!-- MSG 17: Next.js → Browser — return AI summary -->
+  <line x1="300" y1="868" x2="90" y2="868" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="192" y="859" text-anchor="middle" font-size="9" fill="#6b7280">17. ← Return AI summary</text>
+  <text x="192" y="871" text-anchor="middle" font-size="8.5" fill="#6b7280">→ render in Dashboard AI Analysis card</text>
+
+  <!-- ══════════════════ LEGEND ══════════════════ -->
+  <rect x="8" y="912" width="520" height="24" rx="5" fill="white" stroke="#c7d2fe" stroke-width="1"/>
+  <line x1="22" y1="924" x2="52" y2="924" stroke="#1e1b4b" stroke-width="1.8" marker-end="url(#call)"/>
+  <text x="60" y="928" font-size="9" fill="#1e1b4b">synchronous call</text>
+  <line x1="155" y1="924" x2="185" y2="924" stroke="#6b7280" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#ret)"/>
+  <text x="193" y="928" font-size="9" fill="#6b7280">return / response</text>
+  <text x="310" y="928" font-size="9" fill="#9ca3af">Lifelines: Browser | Next.js | Supabase DB | Calculators | Groq API</text>
+
+</svg>

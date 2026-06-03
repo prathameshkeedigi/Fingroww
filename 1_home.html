@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home — Prathamesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --primary: #4f46e5;
+  --primary-light: #6366f1;
+  --primary-pale: #eef2ff;
+  --accent: #f59e0b;
+  --text-dark: #1e1b4b;
+  --text-mid: #4338ca;
+  --text-light: #818cf8;
+  --bg-cream: #f8f9ff;
+  --bg-soft: #eef2ff;
+  --border: #c7d2fe;
+  --shadow: 0 4px 24px rgba(79,70,229,0.14);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family:'DM Sans',sans-serif;
+  background: linear-gradient(135deg, #eef2ff 0%, #f8f9ff 55%, #fef3c7 100%);
+  min-height:100vh;
+  color:var(--text-dark);
+  display:flex; align-items:center;
+  padding: 116px 8% 60px;
+  position:relative; overflow:hidden;
+}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #c7d2fe;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:56px;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#4f46e5;text-decoration:none;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.85rem;font-weight:500;color:#374151;padding:8px 14px;border-radius:7px;transition:.18s;}
+.nav-links a:hover,.nav-links a.active{background:#eef2ff;color:#4f46e5;}
+
+.circle {
+  position:absolute; border-radius:50%;
+  background:var(--primary-pale); pointer-events:none;
+}
+
+.hero-content { position:relative; z-index:1; max-width:720px; }
+
+.badge {
+  display:inline-block; background:var(--primary); color:#fff;
+  font-size:.72rem; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+  padding:7px 18px; border-radius:100px; margin-bottom:1.75rem;
+}
+
+h1 {
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.8rem,6vw,4.5rem);
+  line-height:1.12; color:var(--text-dark); margin-bottom:1.1rem;
+}
+h1 span { color:var(--primary); }
+
+.subtitle {
+  font-size:1.1rem; color:#374151; line-height:1.75;
+  margin-bottom:2.5rem; max-width:560px;
+}
+
+.btns { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:3.5rem; }
+.btn {
+  padding:13px 30px; border-radius:9px; font-size:.95rem; font-weight:600;
+  text-decoration:none; cursor:pointer; border:none; transition:.22s;
+  display:inline-flex; align-items:center; gap:8px; font-family:'DM Sans',sans-serif;
+}
+.btn-primary { background:var(--primary); color:#fff; }
+.btn-primary:hover { background:var(--primary-light); transform:translateY(-2px); box-shadow:var(--shadow); }
+.btn-outline { background:transparent; color:var(--primary); border:2px solid var(--primary); }
+.btn-outline:hover { background:var(--primary-pale); }
+
+.stats { display:flex; gap:3rem; flex-wrap:wrap; }
+.stat .num {
+  font-family:'Playfair Display',serif; font-size:2.4rem;
+  color:var(--primary); font-weight:700; line-height:1;
+}
+.stat .lbl {
+  font-size:.78rem; color:#6b7280;
+  text-transform:uppercase; letter-spacing:.07em; margin-top:4px;
+}
+
+.right-card {
+  position:absolute; right:8%; top:50%; transform:translateY(-50%);
+  background:rgba(255,255,255,0.88); backdrop-filter:blur(10px);
+  border:1px solid var(--border); border-radius:20px;
+  padding:2rem 1.75rem; width:268px;
+  display:flex; flex-direction:column; gap:1.25rem;
+  box-shadow: 0 8px 32px rgba(79,70,229,0.12);
+}
+@media(max-width:960px){ .right-card { display:none; } }
+
+.card-title {
+  font-size:.75rem; font-weight:700; text-transform:uppercase;
+  letter-spacing:.1em; color:#9ca3af; margin-bottom:.25rem;
+}
+.card-item {
+  display:flex; align-items:center; gap:.75rem;
+  padding:.65rem .75rem; border-radius:10px;
+  background:var(--bg-soft); border:1px solid var(--border);
+}
+.card-dot {
+  width:10px; height:10px; border-radius:50%; background:var(--primary); flex-shrink:0;
+}
+.card-text { font-size:.85rem; color:var(--text-dark); font-weight:500; }
+.card-sub { font-size:.75rem; color:#9ca3af; margin-top:1px; }
+
+.highlight {
+  background:var(--primary); color:#fff;
+  border-radius:10px; padding:.75rem 1rem;
+  font-size:.875rem; font-weight:600; text-align:center; line-height:1.4;
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="1_home.html" class="nav-brand">Prathamesh · Fingroww</a>
+  <ul class="nav-links">
+    <li><a href="1_home.html" class="active">Home</a></li>
+    <li><a href="2_about.html">About</a></li>
+    <li><a href="3_learnings.html">Learnings</a></li>
+    <li><a href="4_project.html">Project</a></li>
+    <li><a href="5_certificates.html">Certificates</a></li>
+    <li><a href="6_contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="circle" style="width:500px;height:500px;right:-130px;top:-110px;opacity:.45;"></div>
+<div class="circle" style="width:200px;height:200px;left:-50px;bottom:70px;opacity:.3;"></div>
+<div class="circle" style="width:110px;height:110px;left:40%;top:12%;opacity:.25;"></div>
+
+<div class="hero-content">
+  <div class="badge">SE &amp; WT Course Portfolio &nbsp;·&nbsp; KLE Tech University</div>
+
+  <h1>Hello, I'm<br><span>Prathamesh</span></h1>
+
+  <p class="subtitle">
+    A Computer Science (AI) student at KLE Technological University, building
+    real-world full-stack applications with modern web technologies. This portfolio
+    showcases my work on <strong>Fingroww</strong> — a personal finance dashboard
+    for Indian professionals, built with Next.js, Supabase, and AI.
+  </p>
+
+  <div class="btns">
+    <a href="4_project.html" class="btn btn-primary">View Fingroww →</a>
+    <a href="2_about.html" class="btn btn-outline">About Me</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="num">11</div><div class="lbl">Modules Built</div></div>
+    <div class="stat"><div class="num">6</div><div class="lbl">Sprints</div></div>
+    <div class="stat"><div class="num">647</div><div class="lbl">Tests Written</div></div>
+    <div class="stat"><div class="num">Full</div><div class="lbl">Stack Project</div></div>
+  </div>
+</div>
+
+<!-- floating info card -->
+<div class="right-card">
+  <div>
+    <div class="card-title">Quick Info</div>
+  </div>
+  <div class="card-item">
+    <div class="card-dot"></div>
+    <div>
+      <div class="card-text">Prathamesh</div>
+      <div class="card-sub">USN: [Your USN]</div>
+    </div>
+  </div>
+  <div class="card-item">
+    <div class="card-dot" style="background:#f59e0b;"></div>
+    <div>
+      <div class="card-text">B.Tech CSE (AI)</div>
+      <div class="card-sub">KLE Tech University</div>
+    </div>
+  </div>
+  <div class="card-item">
+    <div class="card-dot" style="background:#10b981;"></div>
+    <div>
+      <div class="card-text">SE &amp; WT Course</div>
+      <div class="card-sub">Sem 2 · 2025–26</div>
+    </div>
+  </div>
+  <div class="highlight">
+    Fingroww<br>
+    <span style="font-size:.75rem;font-weight:400;opacity:.85;">Personal Finance Dashboard</span>
+  </div>
+</div>
+
+</body>
+</html>

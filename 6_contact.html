@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Prathamesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#4f46e5;--primary-light:#6366f1;--primary-pale:#eef2ff;
+  --text-dark:#1e1b4b;--text-mid:#374151;--text-light:#9ca3af;
+  --bg-white:#fff;--bg-soft:#eef2ff;--border:#c7d2fe;
+  --shadow:0 4px 24px rgba(79,70,229,0.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:#f8f9ff;color:var(--text-dark);padding:112px 8% 72px;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #c7d2fe;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:56px;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#4f46e5;text-decoration:none;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.85rem;font-weight:500;color:#374151;padding:8px 14px;border-radius:7px;transition:.18s;}
+.nav-links a:hover,.nav-links a.active{background:#eef2ff;color:#4f46e5;}
+
+.page-label{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--primary);margin-bottom:.6rem;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:.75rem;}
+.divider{width:56px;height:4px;background:var(--primary);border-radius:2px;margin-bottom:2.5rem;}
+
+.layout{display:grid;grid-template-columns:1fr 1.1fr;gap:4rem;align-items:start;}
+@media(max-width:768px){.layout{grid-template-columns:1fr;}}
+
+.intro{font-size:.975rem;color:var(--text-mid);line-height:1.78;margin-bottom:2rem;}
+
+.c-item{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1.4rem;}
+.c-icon{
+  width:46px;height:46px;min-width:46px;border-radius:11px;
+  background:var(--primary-pale);display:flex;align-items:center;justify-content:center;font-size:1.25rem;
+}
+.c-label{font-size:.76rem;color:var(--text-light);text-transform:uppercase;letter-spacing:.06em;}
+.c-val{font-size:.975rem;color:var(--text-dark);font-weight:600;margin-top:3px;}
+
+.social-row{display:flex;gap:.75rem;margin-top:1.75rem;flex-wrap:wrap;}
+.social-btn{
+  display:inline-flex;align-items:center;gap:.5rem;
+  padding:9px 18px;border-radius:9px;font-size:.855rem;font-weight:600;
+  text-decoration:none;border:1.5px solid var(--border);background:var(--bg-white);
+  color:var(--text-dark);transition:.2s;
+}
+.social-btn:hover{border-color:var(--primary);color:var(--primary);background:var(--primary-pale);}
+
+.form-card{background:var(--bg-white);border:1px solid var(--border);border-radius:18px;padding:2rem 2.1rem;}
+.form-card h2{font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--text-dark);margin-bottom:1.5rem;}
+
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+@media(max-width:500px){.row2{grid-template-columns:1fr;}}
+
+.form-group{margin-bottom:1.1rem;}
+.form-group label{display:block;font-size:.82rem;font-weight:700;color:var(--text-dark);margin-bottom:.45rem;}
+.form-group input,.form-group textarea,.form-group select{
+  width:100%;padding:.72rem 1rem;
+  border:1.5px solid var(--border);border-radius:9px;
+  font-family:'DM Sans',sans-serif;font-size:.915rem;color:var(--text-dark);
+  background:var(--bg-soft);transition:.2s;
+}
+.form-group textarea{min-height:110px;resize:vertical;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{
+  outline:none;border-color:var(--primary);background:var(--bg-white);
+}
+.submit-btn{
+  width:100%;padding:.9rem;background:var(--primary);color:#fff;
+  border:none;border-radius:9px;font-size:.975rem;font-weight:700;
+  cursor:pointer;transition:.2s;font-family:'DM Sans',sans-serif;
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+}
+.submit-btn:hover{background:var(--primary-light);transform:translateY(-2px);box-shadow:var(--shadow);}
+
+.success-msg{
+  display:none;background:#ddd6fe;color:#4c1d95;border:1px solid #c4b5fd;
+  border-radius:9px;padding:.9rem 1.2rem;font-size:.9rem;font-weight:600;
+  text-align:center;margin-top:1rem;
+}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="1_home.html" class="nav-brand">Prathamesh · Fingroww</a>
+  <ul class="nav-links">
+    <li><a href="1_home.html">Home</a></li>
+    <li><a href="2_about.html">About</a></li>
+    <li><a href="3_learnings.html">Learnings</a></li>
+    <li><a href="4_project.html">Project</a></li>
+    <li><a href="5_certificates.html">Certificates</a></li>
+    <li><a href="6_contact.html" class="active">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-label">Get In Touch</div>
+<h1>Contact Me</h1>
+<div class="divider"></div>
+
+<div class="layout">
+
+  <!-- LEFT -->
+  <div>
+    <p class="intro">Feel free to reach out for project discussions, collaborations, or just to connect. I'm always open to talking about web development, fintech, and AI applications.</p>
+
+    <div class="c-item">
+      <div class="c-icon">🎓</div>
+      <div><div class="c-label">University</div><div class="c-val">KLE Technological University, Hubballi</div></div>
+    </div>
+    <div class="c-item">
+      <div class="c-icon">📘</div>
+      <div><div class="c-label">Department</div><div class="c-val">CSE (Artificial Intelligence)</div></div>
+    </div>
+    <div class="c-item">
+      <div class="c-icon">🪪</div>
+      <div><div class="c-label">USN</div><div class="c-val">[Your USN]</div></div>
+    </div>
+    <div class="c-item">
+      <div class="c-icon">📧</div>
+      <div><div class="c-label">Email</div><div class="c-val">prathameshke@gmail.com</div></div>
+    </div>
+    <div class="c-item">
+      <div class="c-icon">💼</div>
+      <div><div class="c-label">Project</div><div class="c-val">Fingroww — Personal Finance Dashboard</div></div>
+    </div>
+    <div class="c-item">
+      <div class="c-icon">📍</div>
+      <div><div class="c-label">Location</div><div class="c-val">Hubballi, Karnataka, India</div></div>
+    </div>
+
+    <div class="social-row">
+      <a href="https://github.com/yourhandle" class="social-btn" target="_blank">🐙 GitHub</a>
+      <a href="https://linkedin.com/in/yourprofile" class="social-btn" target="_blank">💼 LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- RIGHT -->
+  <div class="form-card">
+    <h2>Send a Message</h2>
+    <div class="row2">
+      <div class="form-group">
+        <label for="fname">Your Name</label>
+        <input type="text" id="fname" placeholder="Full name">
+      </div>
+      <div class="form-group">
+        <label for="femail">Email</label>
+        <input type="email" id="femail" placeholder="you@email.com">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="fsubject">Subject</label>
+      <input type="text" id="fsubject" placeholder="What's this about?">
+    </div>
+    <div class="form-group">
+      <label for="fmsg">Message</label>
+      <textarea id="fmsg" placeholder="What would you like to discuss?"></textarea>
+    </div>
+    <button class="submit-btn" onclick="handleSubmit()">Send Message →</button>
+    <div class="success-msg" id="success-msg">✅ Thanks! Message received. I'll get back to you soon.</div>
+  </div>
+
+</div>
+
+<script>
+function handleSubmit() {
+  document.getElementById('success-msg').style.display = 'block';
+  document.getElementById('fname').value = '';
+  document.getElementById('femail').value = '';
+  document.getElementById('fsubject').value = '';
+  document.getElementById('fmsg').value = '';
+}
+</script>
+</body>
+</html>

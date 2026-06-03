@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Learnings — Prathamesh</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --primary:#4f46e5;--primary-light:#6366f1;--primary-pale:#eef2ff;
+  --text-dark:#1e1b4b;--text-mid:#374151;--text-light:#9ca3af;
+  --bg-white:#fff;--bg-soft:#eef2ff;--border:#c7d2fe;
+  --shadow:0 4px 24px rgba(79,70,229,0.10);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'DM Sans',sans-serif;background:#f8f9ff;color:var(--text-dark);padding:112px 8% 72px;}
+.site-nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(255,255,255,0.95);backdrop-filter:blur(10px);border-bottom:1px solid #c7d2fe;display:flex;align-items:center;justify-content:space-between;padding:0 5%;height:56px;}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.05rem;font-weight:700;color:#4f46e5;text-decoration:none;}
+.nav-links{display:flex;gap:0;list-style:none;}
+.nav-links a{text-decoration:none;font-size:.85rem;font-weight:500;color:#374151;padding:8px 14px;border-radius:7px;transition:.18s;}
+.nav-links a:hover,.nav-links a.active{background:#eef2ff;color:#4f46e5;}
+
+.page-label{font-size:.72rem;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--primary);margin-bottom:.6rem;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(2rem,4vw,3rem);margin-bottom:.75rem;}
+.divider{width:56px;height:4px;background:var(--primary);border-radius:2px;margin-bottom:.75rem;}
+.desc{font-size:.975rem;color:var(--text-mid);line-height:1.75;max-width:640px;margin-bottom:2.5rem;}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:1.4rem;}
+
+.card{
+  background:var(--bg-white);border:1px solid var(--border);border-radius:14px;
+  padding:1.5rem;transition:.22s;position:relative;overflow:hidden;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:4px;
+  background:var(--primary);
+}
+.card:hover{transform:translateY(-5px);box-shadow:var(--shadow);}
+.card-icon{font-size:2.1rem;margin-bottom:.9rem;}
+.card-title{font-weight:700;font-size:1rem;color:var(--text-dark);margin-bottom:.5rem;}
+.card-desc{font-size:.855rem;color:var(--text-mid);line-height:1.65;}
+
+.tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.85rem;}
+.tech-tag{background:var(--primary-pale);color:var(--primary);border-radius:6px;padding:3px 9px;font-size:.73rem;font-weight:600;}
+
+.summary{
+  background:var(--primary);color:#fff;border-radius:14px;
+  padding:1.5rem 2rem;margin-bottom:2.5rem;
+  display:flex;gap:3rem;flex-wrap:wrap;align-items:center;
+}
+.sum-item .num{font-family:'Playfair Display',serif;font-size:2rem;font-weight:700;}
+.sum-item .lbl{font-size:.78rem;opacity:.8;text-transform:uppercase;letter-spacing:.06em;margin-top:2px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <a href="1_home.html" class="nav-brand">Prathamesh · Fingroww</a>
+  <ul class="nav-links">
+    <li><a href="1_home.html">Home</a></li>
+    <li><a href="2_about.html">About</a></li>
+    <li><a href="3_learnings.html" class="active">Learnings</a></li>
+    <li><a href="4_project.html">Project</a></li>
+    <li><a href="5_certificates.html">Certificates</a></li>
+    <li><a href="6_contact.html">Contact</a></li>
+  </ul>
+</nav>
+
+<div class="page-label">What I Gained</div>
+<h1>Key Learnings</h1>
+<div class="divider"></div>
+<p class="desc">Building Fingroww end-to-end gave me deep, practical experience across the full modern web stack — from Next.js App Router server architecture to database-layer security, financial algorithm design, AI integration, and large-scale test suite management.</p>
+
+<div class="summary">
+  <div class="sum-item"><div class="num">10</div><div class="lbl">Learning Areas</div></div>
+  <div class="sum-item"><div class="num">16+</div><div class="lbl">Technologies Used</div></div>
+  <div class="sum-item"><div class="num">6</div><div class="lbl">Agile Sprints</div></div>
+  <div class="sum-item"><div class="num">647</div><div class="lbl">Tests Written</div></div>
+</div>
+
+<div class="grid">
+
+  <div class="card">
+    <div class="card-icon">⚛️</div>
+    <div class="card-title">Next.js 14 App Router Architecture</div>
+    <div class="card-desc">Deeply understood the App Router model: Server Components for data fetching (no useEffect), Client Components only for interactivity. Built 11 server-rendered pages with a centralised <code>getFinancialSnapshot()</code> function doing 6 parallel Supabase queries — all computed before the first byte reaches the browser.</div>
+    <div class="tag-row"><span class="tech-tag">Next.js 14</span><span class="tech-tag">App Router</span><span class="tech-tag">Server Components</span><span class="tech-tag">SSR</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🗃️</div>
+    <div class="card-title">Supabase & PostgreSQL with RLS</div>
+    <div class="card-desc">Designed 6 database tables with full Row Level Security — USING and WITH CHECK clauses on every table. Learned how database-layer isolation differs from application-layer auth guards. Used GENERATED ALWAYS AS computed columns, UNIQUE constraints, and compound indexes for performance. Auth via <code>getUser()</code> (server-validated JWT), never <code>getSession()</code>.</div>
+    <div class="tag-row"><span class="tech-tag">Supabase</span><span class="tech-tag">PostgreSQL</span><span class="tech-tag">RLS</span><span class="tech-tag">Migrations</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🔐</div>
+    <div class="card-title">Secure Authentication & Middleware</div>
+    <div class="card-desc">Implemented route-level protection using Next.js middleware with Supabase Auth JWT validation. Learned the security difference between <code>getUser()</code> (server-validated token) vs <code>getSession()</code> (client-provided cookie). Built redirect logic: new users → onboarding; returning users → dashboard. All 11 routes protected.</div>
+    <div class="tag-row"><span class="tech-tag">Supabase Auth</span><span class="tech-tag">JWT</span><span class="tech-tag">Middleware</span><span class="tech-tag">Route Guards</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🧮</div>
+    <div class="card-title">Financial Calculator Design</div>
+    <div class="card-desc">Built 5 independent financial calculators from scratch: Debt Avalanche (sorts by interest rate, computes total months to payoff + interest), Goal Planning (SIP formula + probability score from surplus), Emergency Fund (employment-type-aware targets), Health Score (4-component weighted 0–100), and Insights Engine (11 rules, priority sorting).</div>
+    <div class="tag-row"><span class="tech-tag">Avalanche Strategy</span><span class="tech-tag">SIP Formula</span><span class="tech-tag">Probability Model</span><span class="tech-tag">Decimal.js</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🤖</div>
+    <div class="card-title">AI Integration with Groq + Llama 3.3-70B</div>
+    <div class="card-desc">Integrated Groq's inference API with Llama 3.3-70B to generate monthly AI financial analysis. Key learning: LLMs hallucinate numbers — so the AI receives only pre-computed values with strict instructions ("Do NOT calculate"). Built a monthly caching system in PostgreSQL so the API is called only when data changes, not on every page load.</div>
+    <div class="tag-row"><span class="tech-tag">Groq SDK</span><span class="tech-tag">Llama 3.3-70B</span><span class="tech-tag">Prompt Engineering</span><span class="tech-tag">AI Caching</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">📊</div>
+    <div class="card-title">Data Visualisation with Recharts</div>
+    <div class="card-desc">Built multiple chart types: a delta bar chart with direction-aware colour coding (indigo = improved, rose = worsened based on financial meaning, not just sign), a net worth sparkline, a health score gauge, and surplus progress bars. Learned how to use ReferenceLine, Cell-level colour logic, and ResponsiveContainer for adaptive layouts.</div>
+    <div class="tag-row"><span class="tech-tag">Recharts</span><span class="tech-tag">BarChart</span><span class="tech-tag">Sparkline</span><span class="tech-tag">Responsive</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">⚡</div>
+    <div class="card-title">Next.js Server Actions</div>
+    <div class="card-desc">Replaced traditional REST API endpoints entirely with Server Actions. Built 9 server action files for auth, profile, debts, goals, assets, monthly check-in, history, snapshot, and AI summary. Learned how mutations work without an API layer, how to revalidate server caches after mutations, and how to handle errors from server actions in client components.</div>
+    <div class="tag-row"><span class="tech-tag">Server Actions</span><span class="tech-tag">revalidatePath</span><span class="tech-tag">Mutations</span><span class="tech-tag">No REST needed</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🧪</div>
+    <div class="card-title">Test-Driven Development with Jest</div>
+    <div class="card-desc">Wrote 647 tests across 28 test suites covering all 5 financial calculators and the full <code>getFinancialSnapshot</code> data flow integration. Tested edge cases: zero income, negative surplus, missing check-in, stale savings, debt-free users. Also wrote Playwright E2E tests for auth and onboarding flows. Learned the difference between unit, integration, and end-to-end test layers.</div>
+    <div class="tag-row"><span class="tech-tag">Jest</span><span class="tech-tag">Playwright</span><span class="tech-tag">Unit Tests</span><span class="tech-tag">E2E Tests</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🕐</div>
+    <div class="card-title">IST Timezone & Indian Financial Year</div>
+    <div class="card-desc">Built timezone-aware date utilities (istYearMonth, istMonthKey) to handle a subtle bug: a UTC midnight on the 1st can show as the last day of the previous month in IST (+5:30). Implemented the Indian Financial Year (April–March) for the History module. Learned how incorrect timezone handling corrupts financial records in subtle, hard-to-debug ways.</div>
+    <div class="tag-row"><span class="tech-tag">IST Timezone</span><span class="tech-tag">Indian FY</span><span class="tech-tag">Date Utils</span><span class="tech-tag">UTC offset</span></div>
+  </div>
+
+  <div class="card">
+    <div class="card-icon">🔄</div>
+    <div class="card-title">Agile Scrum & Sprint Planning</div>
+    <div class="card-desc">Worked across 6 structured sprints using Agile methodology — writing user stories with acceptance criteria, estimating story points, managing a Kanban board, and delivering working modules every sprint. Learned how to break a complex system (11 modules + AI + 647 tests) into deliverable increments without breaking existing features.</div>
+    <div class="tag-row"><span class="tech-tag">Agile</span><span class="tech-tag">Scrum</span><span class="tech-tag">User Stories</span><span class="tech-tag">Kanban</span></div>
+  </div>
+
+</div>
+</body>
+</html>
